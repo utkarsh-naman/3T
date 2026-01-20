@@ -1,6 +1,8 @@
 package main
 
 import (
+	"fmt"
+
 	"github.com/utkarsh-naman/3T/src/Constants"
 	"github.com/utkarsh-naman/3T/src/model"
 )
@@ -21,7 +23,10 @@ func setTerminal(gamemap model.GMap) {
 	}
 
 	//model.PrintGMap(gamemap)
-	model.SaveGMap(gamemap, "bin/graph/valued/map1.ttt")
+	err := model.SaveGMap(gamemap, "bin/graph/valued/map1.ttt")
+	if err != nil {
+		fmt.Println("File could not be saved:", err)
+	}
 }
 
 func getTerminal(gamemap model.GMap) (terminalWinStates []model.State) {
