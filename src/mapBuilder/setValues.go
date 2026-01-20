@@ -28,7 +28,10 @@ func main() {
 	wins()
 	model.PrintGMap(gamemap)
 	fmt.Println(len(gamemap))
-	//model.SaveGMap(gamemap, "bin/graph/valued/map2.ttt")
+	err := model.SaveGMap(gamemap, "bin/graph/valued/map2.ttt")
+	if err != nil {
+		return
+	}
 }
 
 func wins() {
@@ -40,7 +43,12 @@ func wins() {
 	for _, stateKey := range winStates {
 		props := gamemap[stateKey]
 		props.Score = Constants.POSINF
-		props.WinDepth = maxDepth(stateKey)
+		if len(gamemap[stateKey].NextStates) != 0 {
+			props.WinDepth = maxDepth(stateKey)
+		} else {
+			props.WinDepth = 0
+		}
+
 		gamemap[stateKey] = props
 
 		for _, parentStateKey := range parentFromMap(stateKey) {
@@ -81,17 +89,17 @@ func loses() {
 }
 
 func minDepth(state model.State) int8 {
-	var mind int8 = gamemap[state].WinDepth
-	for _, stateKey := range gamemap[state].NextStates {
-		mind = min(mind, gamemap[stateKey].WinDepth)
+	var mind int8 = 10
+	for _, childStateKey := range gamemap[state].NextStates {
+		mind = min(mind, gamemap[childStateKey].WinDepth)
 	}
 	return mind
 }
 
 func maxDepth(state model.State) int8 {
-	var maxd int8 = gamemap[state].LoseDepth
-	for _, stateKey := range gamemap[state].NextStates {
-		maxd = max(maxd, gamemap[stateKey].LoseDepth)
+	var maxd int8 = 0
+	for _, childStateKey := range gamemap[state].NextStates {
+		maxd = max(maxd, gamemap[childStateKey].LoseDepth)
 	}
 	return maxd
 }
