@@ -28,7 +28,7 @@ func main() {
 	wins()
 	model.PrintGMap(gamemap)
 	fmt.Println(len(gamemap))
-	err := model.SaveGMap(gamemap, "bin/graph/valued/map2.ttt")
+	err := model.SaveGMap(gamemap, "bin/graph/valued/map3.ttt")
 	if err != nil {
 		return
 	}
@@ -40,18 +40,21 @@ func wins() {
 	}
 	loseStates = loseStates[:0]
 
-	for _, stateKey := range winStates {
-		props := gamemap[stateKey]
-		props.Score = Constants.POSINF
-		if len(gamemap[stateKey].NextStates) != 0 {
-			props.WinDepth = maxDepth(stateKey)
+	// marking the win states with +inf
+	for _, winStateKey := range winStates {
+		propsWin := gamemap[winStateKey]
+		propsWin.Score = Constants.POSINF
+		if len(gamemap[winStateKey].NextStates) != 0 {
+			propsWin.WinDepth = maxDepth(winStateKey)
 		} else {
-			props.WinDepth = 0
+			propsWin.WinDepth = 0
 		}
+		gamemap[winStateKey] = propsWin
+	}
 
-		gamemap[stateKey] = props
-
-		for _, parentStateKey := range parentFromMap(stateKey) {
+	for _, winStateKey := range winStates {
+		// working for parent of +inf with -inf
+		for _, parentStateKey := range parentFromMap(winStateKey) {
 			if !workedHistory[parentStateKey] {
 				parentProps := gamemap[parentStateKey]
 				parentProps.Score = Constants.NEGINF
@@ -61,10 +64,9 @@ func wins() {
 					gamemap[parentStateKey] = parentProps
 				}
 				loseStates = append(loseStates, parentStateKey)
-				workedHistory[stateKey] = true
+				workedHistory[winStateKey] = true
 			}
 		}
-
 	}
 	loses()
 	return
@@ -75,11 +77,17 @@ func loses() {
 		return
 	}
 	winStates = winStates[:0]
-	for _, stateKey := range loseStates {
-		for _, parent := range parentFromMap(stateKey) {
+	for _, loseStateKey := range loseStates {
+		for _, parent := range parentFromMap(loseStateKey) {
 			if !workedHistory[parent] {
 				if isAllNeg(gamemap[parent].NextStates) {
 					winStates = append(winStates, parent)
+				} else {
+					if gamemap[parent].Score == 0 {
+						parentProps := gamemap[parent]
+						parentProps.Score = zeroScoreReset(parent)
+						gamemap[parent] = parentProps
+					}
 				}
 			}
 		}
@@ -125,4 +133,24 @@ func getTerminal2(gamemap model.GMap) (terminalWinStates []model.State) {
 		}
 	}
 	return
+}
+
+func zeroScoreReset(parent model.State) float32 {
+	var score float32 = 0
+	var children []model.State = gamemap[parent].NextStates
+	//fmt.Println("for parent: ", parent)
+	for _, childStateKey := range children {
+		//fmt.Print("\tchild state:\t", childStateKey)
+		childScore := gamemap[childStateKey].Score
+		//fmt.Print("\tscore:", childScore, "\n")
+		if childScore == Constants.NEGINF {
+			score += 1
+		} else if childScore == Constants.POSINF {
+			score += -1
+		} else if childScore > 0 {
+			score += childScore
+		}
+	}
+	score = score / float32(len(children))
+	return score
 }

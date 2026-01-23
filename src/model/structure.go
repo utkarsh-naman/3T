@@ -29,10 +29,3 @@ func PrintState(state State) {
 	fmt.Printf("%01b\t%01b\t%01b\t%01b\t%01b\t%09b\t%09b\t%09b", c, t, w, l, tu, x, o, v)
 	fmt.Println("")
 }
-
-type StateProps struct {
-	Score      float32
-	WinDepth   int8
-	LoseDepth  int8
-	NextStates []State
-}

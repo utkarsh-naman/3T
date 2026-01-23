@@ -8,6 +8,13 @@ import (
 	"sort"
 )
 
+type StateProps struct {
+	Score      float32
+	WinDepth   int8
+	LoseDepth  int8
+	NextStates []State
+}
+
 type GMap map[State]StateProps
 
 // use m := make(utils.GMap)
