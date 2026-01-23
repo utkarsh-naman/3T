@@ -108,11 +108,6 @@ func expandEquivalents(state State) []State {
 	return equivalents
 }
 
-func stateFromBoard(boardState State) State {
-	var gameState = finalTouch(boardState)
-	return gameState
-}
-
 func TTTNGinPlay(state State) int8 {
-	return bestMove(stateFromBoard(state), bestNextState(state))
+	return bestMove(state, bestNextState(state))
 }
