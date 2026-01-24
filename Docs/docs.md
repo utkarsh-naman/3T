@@ -40,7 +40,7 @@ A state fully defines:
 This design enables deterministic graph traversal, serialization.
 
 
-## State Representation
+### State Representation
 For the state representation, we require to only represent the occupied position of X and O in the 9 cells 
 of Tic-Tac-Toe game board.
 
@@ -96,7 +96,7 @@ for:
 
 So, we utilize the 32 bit resource completely.
 
-## Final State representation
+### Final State representation
 ### Bit Layout (Left → Right)
 
 ### Field Description
@@ -122,4 +122,24 @@ So, we utilize the 32 bit resource completely.
 
 >The entire game state is encoded into a single **32-bit unsigned integer (`uint32`)** called `State`.
 
+```go
+type State uint32
+```
+>declared [here](../src/model/structure.go#L7)
+## Game Graph
 
+The game graph is a key value pair map with key of type State (uint32) 
+and the value of type struct StateProps (short for State Properties)
+
+```go
+type StateProps struct {
+	Score      float32
+	WinDepth   int8
+	LoseDepth  int8
+	NextStates []State
+}
+
+type GMap map[State]StateProps
+
+```
+>declared [here](../src/model/map.go#L11-18)
