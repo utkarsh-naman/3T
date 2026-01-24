@@ -2,10 +2,12 @@
   <img width="50%" alt="roman men playing tic-tac-toe" src="assets/TTTLogo.png" />
 </div>
 
+# 3T : Highly resource optimized Tic-Tac-Toe Game Engine
+
 >3T is a game engine for TIC-TAC-TOE for the most resource optimized tic-tac-toe game bot.</br>
 
 
->For understanding the project and model structure, please refer [3T Project Documentation](./Docs/docs.md) 
+>### For understanding the project and model structure, please refer [3T Project Documentation](./Docs/docs.md) 
 
 ## Table of Contents
 - [Build Instructions](#build-instructions)
