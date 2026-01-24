@@ -165,6 +165,12 @@ example
 
 <table align="center">
   <tr>
+    <td align="center">0°</td>
+    <td align="center">90°</td>
+    <td align="center">180°</td>
+    <td align="center">270°</td>
+  </tr>
+  <tr>
     <td>
       <table>
         <tr><td>X</td><td>ㅤ</td><td>ㅤ</td></tr>
