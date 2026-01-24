@@ -165,7 +165,7 @@ example
 
 
 
-<div align="center" style="display:flex; gap:40px;">
+<div align="center" style="display:flex; flex-direction: row; gap:40px;">
 
 <div>
 
