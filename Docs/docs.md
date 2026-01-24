@@ -12,7 +12,7 @@
 1. [Game State](#game-state)
    1. [State Representation](#state-representation)
       1. [Approaches](#approaches)
-      2. [Final Representation](#bit-layout-left--right)
+      2. [Final Representation](#final-state-representation)
 2. [Game Graph/Map](#game-graph)
    1. [Graph/Map Representation](#game-graph-representation)
    2. [Next States Generation](#next-state-generation)
