@@ -2,7 +2,7 @@
 
 
 <div align="center">
-  <img width="50%" alt="roman men playing tic-tac-toe" src="https://github.com/user-attachments/assets/167b0549-40be-4f63-9d7b-1a3a54d9db62" />
+  <img width="50%" alt="roman men playing tic-tac-toe" src="assets/TTTLogo.png" />
 </div>
 
 
