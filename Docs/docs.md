@@ -9,20 +9,20 @@
 
 
 ## Table of content
-- [Game State](#game-state)
-    - [State Representation](#state-representation)
-        - [Approaches](#approaches)
-        - [Final Representation](#bit-layout-left--right)
-- [Game Graph/Map](#game-graph)
-    - [Graph/Map Representation]()
-    - [Next States Generation]()
-        - [Symmetry Reduction]()
+1. [Game State](#game-state)
+   1. [State Representation](#state-representation)
+      1. [Approaches](#approaches)
+      2. [Final Representation](#bit-layout-left--right)
+2. [Game Graph/Map](#game-graph)
+   1. [Graph/Map Representation]()
+   2. [Next States Generation]()
+      1. [Symmetry Reduction]()
             - [Rotation Symmetry]()
             - [Reflection Symmetry]()
             - [Cannonical Collapse]()
-    - [Setting Scores]()
-    - [MaxiMax: Self-proclaimed MiniMax varient]()
-- [Game Engine]()
+   3. [Setting Scores]()
+   4. [MaxiMax: Self-proclaimed MiniMax varient]()
+3. [Game Engine]()
 
 
 
@@ -51,9 +51,9 @@ At any given point in time, a cell can be either:
 
 
 ### Approaches
-- [Array of length 9](#approach-1-array-of-length-9)
-- [Integer with 9 digits](#approach-2-9-digits-integer)
-- [32 bit unsigned integer](#approach-3-32-bit-unsigned-integer)
+1. [Array of length 9](#approach-1-array-of-length-9)
+2. [Integer with 9 digits](#approach-2-9-digits-integer)
+3. [32 bit unsigned integer](#approach-3-32-bit-unsigned-integer)
 
 
 
@@ -130,6 +130,12 @@ type State uint32
 
 The game graph is a key value pair map with key of type State (uint32) 
 and the value of type struct StateProps (short for State Properties)
+
+State Properties:
+* A slice []State containing all the next states 
+* Score of type float32 to store score of a state as a move
+* WinDepth means the maximum number of steps in which the State as a move guarantees a win if played strategically, value 10 means (cannot guarantee a win from this state)
+* LoseDepth means the minimum number of steps in which the State as a move guarantees a lose if the opponent play optimal, value 10 means (cannot guarantee a lose from this state)
 
 ```go
 type StateProps struct {
