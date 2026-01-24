@@ -161,7 +161,7 @@ type GMap map[State]StateProps
 However, we need to realize that there exists symmetry in tic-tac-toe board.
 example
 
-<div>
+
 <table align="center">
   <tr>
     <td>
@@ -197,4 +197,4 @@ example
     </td>
   </tr>
 </table>
-</div>
+
