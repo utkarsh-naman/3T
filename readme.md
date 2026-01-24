@@ -5,7 +5,7 @@
 >3T is a game engine for TIC-TAC-TOE for the most resource optimized tic-tac-toe game bot.</br>
 
 
->For understanding the project and model structure, please refer [Build Instructions](instructions.md) 
+>For understanding the project and model structure, please refer [3T Project Documentation](./Docs/docs.md) 
 
 ## Table of Contents
 - [Build Instructions](#build-instructions)

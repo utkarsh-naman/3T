@@ -1,10 +1,9 @@
-# 3T Documentation
-
 
 <div align="center">
   <img width="50%" alt="roman men playing tic-tac-toe" src="../assets/TTTLogo.png" />
 </div>
 
+# 3T Project Documentation
 
 
 
