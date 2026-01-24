@@ -161,43 +161,40 @@ type GMap map[State]StateProps
 However, we need to realize that there exists symmetry in tic-tac-toe board.
 example
 
-
-
-
-
+<div>
 <table align="center">
   <tr>
     <td>
-
-| X |ㅤ|ㅤ |
-|--|--|--|
-|ㅤ|ㅤ|ㅤ|
-|ㅤ|ㅤ|ㅤ|
-
+      <table>
+        <tr><td>X</td><td>ㅤ</td><td>ㅤ</td></tr>
+        <tr><td>ㅤ</td><td>ㅤ</td><td>ㅤ</td></tr>
+        <tr><td>ㅤ</td><td>ㅤ</td><td>ㅤ</td></tr>
+      </table>
     </td>
+
     <td>
-
-|ㅤ|ㅤ|X|
-|--|--|--|
-|ㅤ|ㅤ|ㅤ|
-|ㅤ|ㅤ|ㅤ|
-
+      <table>
+        <tr><td>ㅤ</td><td>ㅤ</td><td>X</td></tr>
+        <tr><td>ㅤ</td><td>ㅤ</td><td>ㅤ</td></tr>
+        <tr><td>ㅤ</td><td>ㅤ</td><td>ㅤ</td></tr>
+      </table>
     </td>
+
     <td>
-
-|ㅤ|ㅤ|ㅤ|
-|--|--|--|
-|ㅤ|ㅤ|ㅤ|
-|X|ㅤ|ㅤ|
-
+      <table>
+        <tr><td>ㅤ</td><td>ㅤ</td><td>ㅤ</td></tr>
+        <tr><td>ㅤ</td><td>ㅤ</td><td>ㅤ</td></tr>
+        <tr><td>X</td><td>ㅤ</td><td>ㅤ</td></tr>
+      </table>
     </td>
+
     <td>
-
-|ㅤ|ㅤ|ㅤ|
-|--|--|--|
-|ㅤ|ㅤ|ㅤ|
-|ㅤ|ㅤ|X|
-
+      <table>
+        <tr><td>ㅤ</td><td>ㅤ</td><td>ㅤ</td></tr>
+        <tr><td>ㅤ</td><td>ㅤ</td><td>ㅤ</td></tr>
+        <tr><td>ㅤ</td><td>ㅤ</td><td>X</td></tr>
+      </table>
     </td>
   </tr>
 </table>
+</div>
