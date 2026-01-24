@@ -14,7 +14,7 @@
 - - [Building GAME](#building-the-game-graph)
 - - [Building WASM GameEngine](#wasm)
 - [Testing the WASM engine](#test-the-engine-on)
-
+- [Issues](#issues)
 
 
 ## Build Instructions
@@ -41,5 +41,44 @@ $env:GOOS = "js"; $env:GOARCH = "wasm"; go build -o main.wasm
 ```bash
 start index.html
 ```
+
+
+## Issues
+### Issue Template
+**Filename:** `.github/ISSUE_TEMPLATE/issue_template.md` (You may need to create the folders `.github` and `ISSUE_TEMPLATE` first).
+
+```markdown
+---
+name: Bug Report or Feature Request
+about: Create a report to help us improve 3T
+title: ''
+labels: ''
+assignees: ''
+---
+
+## Description
+
+> A clear and concise description of what the bug is or what feature you want implemented.
+
+## Steps to Reproduce
+
+1. Go to '...'
+2. Run command '...'
+3. See error
+4. Or wrong output for an input by a function
+
+## Expected Behavior
+
+> A clear and concise description of what you expected to happen.
+
+## Environment (if applicable/specific)
+
+* OS: [e.g. Windows/Linux]
+* Go Version: [e.g. 1.21]
+* Browser (if WASM related): [e.g. Chrome, Firefox]
+
+## Logs / Screenshots
+
+If applicable, add logs or screenshots to help explain your problem.
 
 
