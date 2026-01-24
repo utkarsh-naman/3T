@@ -13,7 +13,7 @@
     - [State Representation](#state-representation)
         - [Approaches](#approaches)
         - [Final Representation](#bit-layout-left--right)
-- [Game Graph/Map]()
+- [Game Graph/Map](#game-graph)
     - [Graph/Map Representation]()
     - [Next States Generation]()
         - [Symmetry Reduction]()
