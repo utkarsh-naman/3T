@@ -165,43 +165,39 @@ example
 
 
 
-<div align="center" style="display:flex; flex-direction: row; gap:40px;">
+<table align="center">
+  <tr>
+    <td>
 
-<div>
-
-| X |ㅤ| ㅤ |
-|--|--|--|
-|ㅤ|ㅤ| ㅤ |
-|ㅤ|ㅤ|ㅤ |
-
-</div>
-
-<div>
-
-|ㅤ|ㅤ| X |
+| X |ㅤ|ㅤ |
 |--|--|--|
 |ㅤ|ㅤ|ㅤ|
 |ㅤ|ㅤ|ㅤ|
 
-</div>
+    </td>
+    <td>
 
-<div>
+|ㅤ|ㅤ|X|
+|--|--|--|
+|ㅤ|ㅤ|ㅤ|
+|ㅤ|ㅤ|ㅤ|
+
+    </td>
+    <td>
 
 |ㅤ|ㅤ|ㅤ|
 |--|--|--|
 |ㅤ|ㅤ|ㅤ|
 |X|ㅤ|ㅤ|
 
-</div>
-
-<div>
+    </td>
+    <td>
 
 |ㅤ|ㅤ|ㅤ|
 |--|--|--|
 |ㅤ|ㅤ|ㅤ|
-|ㅤ|ㅤ| X |
+|ㅤ|ㅤ|X|
 
-</div>
-
-</div>
-
+    </td>
+  </tr>
+</table>
