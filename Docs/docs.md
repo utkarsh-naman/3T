@@ -163,7 +163,7 @@ example
 
 
 
-<table align="center" border="0">
+<table align="center" cellspacing="0" cellpadding="0" border="0">
   <tr>
     <td>
       <table>
