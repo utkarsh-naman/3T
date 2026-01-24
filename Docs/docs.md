@@ -162,6 +162,7 @@ However, we need to realize that there exists symmetry in tic-tac-toe board.
 example
 
 
+
 <table align="center">
   <tr>
     <td>
@@ -171,7 +172,6 @@ example
         <tr><td>ㅤ</td><td>ㅤ</td><td>ㅤ</td></tr>
       </table>
     </td>
-
     <td>
       <table>
         <tr><td>ㅤ</td><td>ㅤ</td><td>X</td></tr>
@@ -179,7 +179,6 @@ example
         <tr><td>ㅤ</td><td>ㅤ</td><td>ㅤ</td></tr>
       </table>
     </td>
-
     <td>
       <table>
         <tr><td>ㅤ</td><td>ㅤ</td><td>ㅤ</td></tr>
@@ -187,7 +186,6 @@ example
         <tr><td>X</td><td>ㅤ</td><td>ㅤ</td></tr>
       </table>
     </td>
-
     <td>
       <table>
         <tr><td>ㅤ</td><td>ㅤ</td><td>ㅤ</td></tr>
