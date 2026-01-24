@@ -16,3 +16,8 @@ WASM
 cd WASM
 $env:GOOS = "js"; $env:GOARCH = "wasm"; go build -o main.wasm
 ```
+
+Test the engine on:
+```bash
+start index.html
+```

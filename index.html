@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>3T WASM Engine Test</title>
+
+  <style>
+    body {
+      font-family: system-ui, sans-serif;
+      background: #0f1220;
+      color: #eaeaf0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .card {
+      background: #171a2e;
+      padding: 24px 28px;
+      border-radius: 12px;
+      width: 420px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+    }
+
+    h1 {
+      margin-top: 0;
+      font-size: 1.3rem;
+      text-align: center;
+    }
+
+    label {
+      display: block;
+      margin-top: 16px;
+      font-size: 0.9rem;
+      opacity: 0.85;
+    }
+
+    input {
+      width: 100%;
+      margin-top: 6px;
+      padding: 10px;
+      border-radius: 6px;
+      border: none;
+      outline: none;
+      font-size: 0.95rem;
+    }
+
+    button {
+      margin-top: 16px;
+      width: 100%;
+      padding: 10px;
+      border-radius: 8px;
+      border: none;
+      cursor: pointer;
+      font-size: 1rem;
+      font-weight: 600;
+      background: #4f7cff;
+      color: white;
+    }
+
+    button:disabled {
+      background: #555;
+      cursor: not-allowed;
+    }
+
+    .output {
+      margin-top: 18px;
+      background: #0c0f1f;
+      padding: 12px;
+      border-radius: 6px;
+      font-family: monospace;
+      font-size: 0.95rem;
+      min-height: 2em;
+    }
+
+    .status {
+      margin-top: 10px;
+      font-size: 0.85rem;
+      opacity: 0.8;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <h1>3T WASM – TTTNGinPlay</h1>
+
+    <label for="stateInput">
+      Enter game state (decimal or 0b… binary)
+    </label>
+    <input
+      id="stateInput"
+      placeholder="e.g. 2147484159 or 0b100000000000000000011111111"
+    />
+
+    <button id="runBtn" disabled>Run AI</button>
+
+    <div class="output" id="output">
+      Waiting for WASM…
+    </div>
+
+    <div class="status" id="status">
+      Loading Go WASM runtime…
+    </div>
+  </div>
+
+  <!-- Go WASM runtime -->
+  <script src="https://cdn.jsdelivr.net/gh/utkarsh-naman/3T@main/WASM/wasm_exec.js"></script>
+
+  <script>
+    const statusEl = document.getElementById("status");
+    const outputEl = document.getElementById("output");
+    const runBtn   = document.getElementById("runBtn");
+    const inputEl = document.getElementById("stateInput");
+
+    const go = new Go();
+
+    async function loadWasm() {
+      try {
+        statusEl.textContent = "Downloading WASM…";
+
+        const result = await WebAssembly.instantiateStreaming(
+          fetch("https://cdn.jsdelivr.net/gh/utkarsh-naman/3T@main/WASM/dd/main5.wasm"),
+          go.importObject
+        );
+
+        go.run(result.instance);
+
+        if (typeof TTTNGinPlay !== "function") {
+          throw new Error("TTTNGinPlay not found on window");
+        }
+
+        statusEl.textContent = "WASM loaded ✔";
+        outputEl.textContent = "Ready.";
+        runBtn.disabled = false;
+
+      } catch (err) {
+        statusEl.textContent = "Failed to load WASM ❌";
+        outputEl.textContent = err.toString();
+        console.error(err);
+      }
+    }
+
+    runBtn.addEventListener("click", () => {
+      try {
+        let raw = inputEl.value.trim();
+        if (!raw) return;
+
+        let state;
+        if (raw.startsWith("0b")) {
+          state = parseInt(raw.slice(2), 2);
+        } else {
+          state = Number(raw);
+        }
+
+        if (!Number.isFinite(state)) {
+          throw new Error("Invalid state value");
+        }
+
+        const move = TTTNGinPlay(state);
+        outputEl.textContent = `AI move: ${move}`;
+
+      } catch (err) {
+        outputEl.textContent = err.toString();
+      }
+    });
+
+    loadWasm();
+  </script>
+
+</body>
+</html>
