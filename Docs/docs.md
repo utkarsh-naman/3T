@@ -63,7 +63,7 @@ If we represent a cell:
 - occupied by O with 2
 - vacant with 0
 
-and use an array of length 9, it will occupy size $= 9*sizeOf(each\_element) = 9*8 = 72\ bytes = 576\ bits$
+and use an array of length 9, it will occupy size $= 9*sizeOf(each\_element) = 9*8 = 72\ bits$
 >\* since the smallest int type in golang requires size 8 bytes
 
 ### Approach 2: 9 digits Integer
