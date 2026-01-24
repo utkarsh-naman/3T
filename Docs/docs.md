@@ -14,8 +14,8 @@
       1. [Approaches](#approaches)
       2. [Final Representation](#bit-layout-left--right)
 2. [Game Graph/Map](#game-graph)
-   1. [Graph/Map Representation]()
-   2. [Next States Generation]()
+   1. [Graph/Map Representation](#game-graph-representation)
+   2. [Next States Generation](#next-state-generation)
       1. [Symmetry Reduction]()
             - [Rotation Symmetry]()
             - [Reflection Symmetry]()
@@ -128,14 +128,17 @@ type State uint32
 >declared [here](../src/model/structure.go#L7)
 ## Game Graph
 
+The game graph would be a uni-directional graph connecting the nodes (States) to its children nodes (next States)
+
+### Game graph representation
 The game graph is a key value pair map with key of type State (uint32) 
 and the value of type struct StateProps (short for State Properties)
 
 State Properties:
-* A slice []State containing all the next states 
+* NextStates: A slice []State containing all the next states 
 * Score of type float32 to store score of a state as a move
-* WinDepth means the maximum number of steps in which the State as a move guarantees a win if played strategically, value 10 means (cannot guarantee a win from this state)
-* LoseDepth means the minimum number of steps in which the State as a move guarantees a lose if the opponent play optimal, value 10 means (cannot guarantee a lose from this state)
+* WinDepth: the maximum number of steps in which the State as a move guarantees a win if played strategically, value 10 means (cannot guarantee a win from this state)
+* LoseDepth: the minimum number of steps in which the State as a move guarantees a lose if the opponent play optimal, value 10 means (cannot guarantee a lose from this state)
 
 ```go
 type StateProps struct {
@@ -149,3 +152,56 @@ type GMap map[State]StateProps
 
 ```
 >declared [here](../src/model/map.go#L11-L18)
+
+### Next State Generation
+
+>The function `NextMoves` which can be found [here](../src/utils/nextstates.go#L11-L40) </br>
+> uses bit-Manipulation to generate a slice containing next states, each of type State</br>
+
+However, we need to realize that there exists symmetry in tic-tac-toe board.
+example
+
+
+
+
+
+<div align="center" style="display:flex; gap:40px;">
+
+<div>
+
+| X |ㅤ| ㅤ |
+|--|--|--|
+|ㅤ|ㅤ| ㅤ |
+|ㅤ|ㅤ|ㅤ |
+
+</div>
+
+<div>
+
+|ㅤ|ㅤ| X |
+|--|--|--|
+|ㅤ|ㅤ|ㅤ|
+|ㅤ|ㅤ|ㅤ|
+
+</div>
+
+<div>
+
+|ㅤ|ㅤ|ㅤ|
+|--|--|--|
+|ㅤ|ㅤ|ㅤ|
+|X|ㅤ|ㅤ|
+
+</div>
+
+<div>
+
+|ㅤ|ㅤ|ㅤ|
+|--|--|--|
+|ㅤ|ㅤ|ㅤ|
+|ㅤ|ㅤ| X |
+
+</div>
+
+</div>
+
