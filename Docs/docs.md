@@ -142,4 +142,4 @@ type StateProps struct {
 type GMap map[State]StateProps
 
 ```
->declared [here](../src/model/map.go#L11-18)
+>declared [here](../src/model/map.go#L11-L18)
