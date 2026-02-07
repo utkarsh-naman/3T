@@ -71,11 +71,10 @@ fn game_tie(x: &State, o: &State, vacancy: &State) -> bool{
 }
 
 fn whose_turn (vcacancy: &State) -> State{
-    if *vcacancy == 0{
-        return 1
+    // println!("received vacancy for turn: {:09b}", vcacancy);
+    let empty = vcacancy.count_ones();
+    if empty%2 == 1{
+        return 0
     }
-    if (*vcacancy&(*vcacancy-1))^1 == 0{
-        return 1
-    }
-    0
+    1
 }

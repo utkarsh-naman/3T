@@ -17,6 +17,21 @@ pub struct StateProps{
 pub type GameMap = HashMap<State, StateProps>;
 
 
+// pub fn print_map(map: &GameMap) {
+//     if map.is_empty() {
+//         println!("The map is empty.");
+//         return;
+//     }
+//
+//     println!("--- Game Map Dump (Total States: {}) ---", map.len());
+//     for (state_key, props) in map {
+//         // Printing state as 32-bit binary for consistency with your board logic
+//         println!("State [binary]: {:032b}", state_key);
+//         println!("  Properties: {:?}", props);
+//     }
+//     println!("------------------------------------------");
+// }
+
 pub fn print_map(map: &GameMap) {
     if map.is_empty() {
         println!("The map is empty.");
@@ -24,11 +39,23 @@ pub fn print_map(map: &GameMap) {
     }
 
     println!("--- Game Map Dump (Total States: {}) ---", map.len());
-    for (state_key, props) in map {
-        // Printing state as 32-bit binary for consistency with your board logic
-        println!("State [binary]: {:032b}", state_key);
-        println!("  Properties: {:?}", props);
+
+    for (state, props) in map {
+        println!("State [binary]: {:032b}", state);
+        println!("\tState Properties {{");
+        println!("\t\tscore: {}", props.score);
+        println!("\t\twin_depth: {}", props.win_depth);
+        println!("\t\tlose_depth: {}", props.lose_depth);
+
+        println!("\t\tnext_state: [");
+        for next in &props.next_state {
+            println!("\t\t\t{:032b}", next);
+        }
+        println!("\t\t]");
+
+        println!("\t}}\n");
     }
+
     println!("------------------------------------------");
 }
 
