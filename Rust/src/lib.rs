@@ -3,3 +3,4 @@ pub mod model;
 pub mod symmetry_reduction;
 pub mod utils;
 pub mod mapbuilder;
+pub mod game_engine;
